@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -12,7 +13,6 @@ import { Menu } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 
 interface MenuItem {
   title: string;
@@ -52,7 +52,7 @@ const Navbar = ({
   ],
   className,
 }: Navbar1Props) => {
-   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <header
       className={cn(
