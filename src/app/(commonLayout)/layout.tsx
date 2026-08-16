@@ -8,7 +8,7 @@ export default async function CommonLayout({
   return (
     <>
       <Navbar />
-      {children}
+      <main>{children}</main>
     </>
   );
 }

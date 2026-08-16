@@ -25,7 +25,7 @@ const Banner = () => {
       {/* Main content wrapper */}
       <div className="w-full max-w-7xl mx-auto flex-1 flex flex-col justify-between relative ">
         {/* Hero Title Section */}
-        <div className="relative text-center flex flex-col items-center justify-center z-10">
+        <div className="relative text-center flex flex-col items-center justify-center ">
           <h1 className="flex flex-col items-center tracking-tight text-white font-bold leading-none">
             <motion.span
               initial={{ opacity: 0, y: 30 }}
@@ -47,7 +47,7 @@ const Banner = () => {
                 delay: 0.25,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="text-4xl z-10 md:text-7xl lg:text-[6rem] xl:text-[7rem] font-serif italic text-[#A855F7] mt-1 md:mt-3 leading-tight tracking-wide"
+              className="text-4xl hover:z-50 transition-all duration-1000  md:text-7xl lg:text-[6rem] xl:text-[7rem] font-serif italic text-[#A855F7] mt-1 md:mt-3 leading-tight tracking-wide"
             >
               Full Stack Developer
             </motion.span>
@@ -61,7 +61,7 @@ const Banner = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="hidden lg:block absolute left-[2%] xl:left-[5%] top-[40%] -translate-y-1/2 z-30"
+            className="hidden lg:block absolute left-[2%] xl:left-[5%] top-[40%] -translate-y-1/2"
           >
             <motion.div
               animate={{
@@ -85,12 +85,12 @@ const Banner = () => {
           </motion.div>
 
           {/* Center Profile Image */}
-          <div className="relative  w-full max-w-[320px] md:max-w-[520px] lg:max-w-[620px] xl:max-w-[700px] mx-auto z-20 flex justify-center -mt-16 md:-mt-36 lg:-mt-48 xl:-mt-56 select-none pointer-events-none">
+          <div className="relative  w-full max-w-[320px] md:max-w-[520px] lg:max-w-[620px] xl:max-w-[700px] mx-auto  flex justify-center -mt-16 md:-mt-36 lg:-mt-48 xl:-mt-56 select-none pointer-events-none ">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-[320px] h-[320px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[680px] xl:h-[680px]"
+              className="relative w-[320px] h-[320px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[680px] xl:h-[680px] "
             >
               <Image
                 src="/profile.png"
@@ -98,7 +98,7 @@ const Banner = () => {
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain drop-shadow-[0_15px_40px_rgba(168,85,247,0.18)]"
+                className="object-contain drop-shadow-[0_15px_40px_rgba(168,85,247,0.18)] hover:hidden"
               />
             </motion.div>
           </div>
