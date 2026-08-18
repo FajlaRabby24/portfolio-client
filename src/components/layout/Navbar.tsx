@@ -57,54 +57,62 @@ const Navbar = ({
   return (
     <header
       className={cn(
-        "sticky top-0 z-100 w-full bg-black/60 backdrop-blur-md border-b border-zinc-900/80 transition-all duration-300",
+        "sticky top-0 z-100 w-full bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md border-b border-zinc-200/50 dark:border-zinc-900/80 transition-all duration-300",
         className,
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Logo - Serif Italic style matching "Elian Ross" */}
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
+        
+        {/* Logo - Modern Clean Sans-Serif */}
         <Link
           href={logo.url}
           className="flex items-center gap-2 group relative z-50"
         >
-          <span className="font-serif italic text-2xl font-bold tracking-wide text-white group-hover:text-[#A855F7] transition-colors duration-300">
+          <span className="font-bold text-xl tracking-tight text-zinc-900 dark:text-white transition-colors duration-300">
             {logo.title}
           </span>
-          <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#A855F7] group-hover:w-full transition-all duration-300"></span>
         </Link>
 
-        {/* Navigation Elements */}
-        <div className="flex items-center gap-8">
-          {/* Desktop Inline Menu Links */}
-          <nav className="hidden md:flex items-center gap-8">
-            {menu.map((item) => (
-              <Link
-                key={item.title}
-                href={item.url}
-                className="relative text-sm text-zinc-400 hover:text-white transition-colors py-2 font-medium tracking-wide group"
-              >
-                {item.title}
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#A855F7] group-hover:w-full transition-all duration-300"></span>
-              </Link>
-            ))}
-          </nav>
+        {/* Desktop Centered Menu Links */}
+        <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+          {menu.map((item) => (
+            <Link
+              key={item.title}
+              href={item.url}
+              className="text-sm font-semibold text-zinc-650 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors py-2"
+            >
+              {item.title}
+            </Link>
+          ))}
+        </nav>
 
+        {/* Right Action Elements */}
+        <div className="flex items-center gap-4 z-50">
+          
           {/* Theme Toggle */}
           <ThemeToggle />
 
-          {/* Hamburger Menu Button - Styled circular outline matching the screenshot */}
+          {/* Contact Pill Button - Desktop */}
+          <Link
+            href="#contact"
+            className="hidden md:inline-flex items-center justify-center px-6 py-2 rounded-full text-sm font-semibold bg-zinc-950 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-100 transition-colors shadow-sm"
+          >
+            Contact
+          </Link>
+
+          {/* Hamburger Menu Button - Mobile */}
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button
-                className="w-12 h-12 rounded-full border border-zinc-800 hover:border-[#A855F7] bg-zinc-950/40 text-white flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#A855F7]/40 cursor-pointer group md:hidden"
+                className="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-800 bg-transparent text-zinc-800 dark:text-zinc-200 flex items-center justify-center transition-all duration-300 hover:border-[#A855F7] dark:hover:border-[#A855F7] hover:bg-transparent dark:hover:bg-transparent cursor-pointer group md:hidden"
                 aria-label="Toggle Menu"
               >
-                <Menu className="w-5 h-5 text-zinc-300 group-hover:text-[#A855F7] group-hover:scale-110 transition-all duration-300" />
+                <Menu className="w-4 h-4 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-300" />
               </Button>
             </SheetTrigger>
-            <SheetContent className="bg-black/95 border-l border-zinc-900 flex flex-col justify-between p-8 text-white w-full sm:max-w-md">
-              <SheetHeader className="border-b border-zinc-900/60 pb-6">
-                <SheetTitle className="text-left font-serif italic text-2xl font-bold text-white flex justify-between items-center">
+            <SheetContent className="bg-white dark:bg-zinc-950 border-l border-zinc-200 dark:border-zinc-900 flex flex-col justify-between p-8 text-zinc-900 dark:text-white w-full sm:max-w-md">
+              <SheetHeader className="border-b border-zinc-200 dark:border-zinc-800 pb-6">
+                <SheetTitle className="text-left font-bold text-xl text-zinc-900 dark:text-white flex justify-between items-center">
                   <span>{logo.title}</span>
                 </SheetTitle>
               </SheetHeader>
@@ -121,19 +129,35 @@ const Navbar = ({
                     <Link
                       href={item.url}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-3xl font-light hover:text-[#A855F7] tracking-wide transition-colors duration-300 font-serif italic flex items-baseline group"
+                      className="text-3xl font-bold hover:text-zinc-600 dark:hover:text-zinc-300 tracking-wide transition-colors duration-300 flex items-baseline group"
                     >
-                      <span className="text-[#A855F7]/40 text-xs font-sans not-italic mr-4 group-hover:text-[#A855F7] transition-colors">
+                      <span className="text-zinc-400 dark:text-zinc-600 text-xs font-sans not-italic mr-4">
                         0{idx + 1}
                       </span>
                       {item.title}
                     </Link>
                   </motion.div>
                 ))}
+                
+                {/* Contact Pill Action inside Mobile Drawer */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: menu.length * 0.1, duration: 0.4 }}
+                  className="pt-4"
+                >
+                  <Link
+                    href="#contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="inline-flex w-full items-center justify-center px-6 py-3 rounded-full text-base font-semibold bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 shadow-sm"
+                  >
+                    Contact
+                  </Link>
+                </motion.div>
               </div>
 
               {/* Drawer Footer info */}
-              <div className="border-t border-zinc-900/60 pt-6 flex flex-col gap-2 text-zinc-500 text-xs font-light">
+              <div className="border-t border-zinc-200 dark:border-zinc-800 pt-6 flex flex-col gap-2 text-zinc-400 dark:text-zinc-500 text-xs font-light">
                 <p>© 2026 {logo.title}. All rights reserved.</p>
                 <p>Full Stack Developer Portfolio</p>
               </div>
