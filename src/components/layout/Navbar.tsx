@@ -13,6 +13,7 @@ import { Menu } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface MenuItem {
   title: string;
@@ -87,6 +88,9 @@ const Navbar = ({
               </Link>
             ))}
           </nav>
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
 
           {/* Hamburger Menu Button - Styled circular outline matching the screenshot */}
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
