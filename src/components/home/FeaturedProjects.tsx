@@ -3,15 +3,14 @@
 import { ExternalLink, Info, X } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
+import Image from "next/image";
 import "swiper/css";
 import "swiper/css/pagination";
 import { GithubIcon } from "./banner";
-
-
 
 interface Project {
   id: number;
@@ -33,18 +32,19 @@ interface Project {
 
 const mockProjects: Project[] = [
   {
-    id: 1,
+    id: 1, // Assign appropriate ID for your portfolio list
     title: "AI Generate Studio",
     description:
-      "A developer forum featuring AI answers, tagging search algorithms, and reputation systems.",
+      "A premium full-stack AI SaaS platform enabling users to interact with multiple cutting-edge AI generation tools (Image, Video, Speech, Chatbot, Resume Analyzer) under a credits-based freemium model with Stripe payment system.",
     features: [
-      "Generates automated AI answers tailored to the code syntax in the question.",
-      "Custom global search parsed via title, tags, description, and author.",
-      "Robust gamified reputation metrics logic based on badge rewards.",
+      "Comprehensive AI Suite: Text-to-Image, Text/Image-to-Video, Resume Analyzer, Text-to-Speech, Background Remover & Chatbot.",
+      "Real-time credit tracking and daily limit management (3 daily generations for free user).",
+      "Webhook for Image/Video generation and stripe payment updates.",
+      "Full history tracking and generation management of all outputs (Images, Videos, Audios) with download and delete capabilities.",
     ],
-    liveUrl: "https://devflow.example.com",
-    clientUrl: "https://github.com/FajlaRabby24/devflow-client",
-    serverUrl: "https://github.com/FajlaRabby24/devflow-server",
+    liveUrl: "https://ai-generate-studio24.vercel.app",
+    clientUrl: "https://github.com/FajlaRabby24/ai-generate-studio-client",
+    serverUrl: "https://github.com/FajlaRabby24/ai-generate-studio-backend",
     images: [
       {
         url: "/ai-generate-studio.png",
@@ -61,38 +61,103 @@ const mockProjects: Project[] = [
     ],
     details: {
       overview:
-        "DevFlow is designed to empower developer communities with AI-driven responses. It cuts down community response times by matching new questions against vector databases and feeding relevant snippets to generative LLM pipelines.",
+        "AI Generate Studio is a full-stack Software-as-a-Service (SaaS) platform designed to put state-of-the-art AI creation tools directly in the hands of users. Built with a high-end Glassmorphic UI/UX using Next.js 16 and Tailwind CSS v4, the client dashboard interacts with a fast, TypeScript-based Express.js server. The platform integrates third-party AI APIs like Pixazo, Gemini etc and payment gateways (Stripe) to offer seamless subscription upgrades, all powered by a robust PostgreSQL database with Prisma ORM.",
       points: [
-        "Vector-embedding search over historical questions.",
-        "Interactive markdown editor for clean code block formatting.",
-        "Strict secure JWT user authentication with rate-limiting.",
-        "Real-time notifications powered by web sockets.",
+        "Built with high-fidelity performance using React 19, Next.js 16 App Router, and the Bun runtime for rapid compilation and running speed.",
+        "Optimized query caching and server-state synchronization with TanStack React Query v5 to deliver a zero-latency feel on user dashboard controls.",
+        "Secured session authentication and OAuth endpoints handled via better-auth integrations, matching industry safety standards.",
+        "Strict prompt validation using Zod and React Hook Form on the frontend before dispatching API requests to reduce server overhead.",
+        "Server-side daily rate-limiting check verifying database user generation limits before interacting with paid ModelsLab API endpoints.",
       ],
       tech: [
-        "Next.js",
-        "Postgres",
-        "Prisma",
-        "Express",
-        "Node.js",
-        "Tailwind CSS",
-        "OpenAI API",
-        "Socket.io",
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Express.js",
+        "Bun",
+        "PostgreSQL",
+        "Prisma ORM",
+        "Tailwind CSS v4",
+        "shadcn/ui",
+        "Framer Motion",
+        "TanStack React Query v5",
+        "Stripe",
+        "Third-Party AI APIs",
+        "Better-Auth",
+      ],
+    },
+  },
+  {
+    id: 2,
+    title: "CineTube",
+    description:
+      "A state-of-the-art cinematic movie streaming and review application designed to deliver a high-end visual experience. Users can explore films, write ratings/reviews, curate personal watchlists, and subscribe to premium plans via Stripe.",
+    features: [
+      "Comprehensive movie search engine with pagination, sorting, and filters (genre, tags, Free vs. Premium).",
+      "Interactive rating and user review system.",
+      "Secure Stripe checkout and payment integrations with automated recurring billing webhooks.",
+      "Role-based dashboards (Admin & User) to manage content indexing, user access, billing statuses, and inbox feedback.",
+    ],
+    liveUrl: "https://cinetube-client-24.vercel.app",
+    clientUrl: "https://github.com/FajlaRabby24/CineTube-client",
+    serverUrl: "https://github.com/FajlaRabby24/CineTube-server",
+    images: [
+      {
+        url: "/cunetube.png",
+      },
+      {
+        url: "/cunetube2.png",
+      },
+      {
+        url: "/cunetube3.png",
+      },
+      {
+        url: "/cunetube4.png",
+      },
+    ],
+    details: {
+      overview:
+        "CineTube is a cinematic web app designed to showcase high-performance React design patterns and robust Express.js API development. The platform features strict request-response validations, modern relational database architectures, and secure payment processing hooks to enable subscription-based premium access.",
+      points: [
+        "Designed a highly scalable backend structure using Express 5, Prisma modular schema models, and a Neon serverless PostgreSQL database.",
+        "Developed a custom client-to-server QueryBuilder on the backend supporting sorting, text search, pagination, and multi-tag genre relations.",
+        "Built the frontend client using Next.js 16 (App Router), TanStack Query for server state caching, and TanStack Form for client-side forms control.",
+        "Integrated Better Auth for secure user sessions alongside customized Express verification middleware.",
+        "Implemented a secure Stripe webhook endpoint on the server to dynamically handle subscription events (successful checkout, cancellations, renewals).",
+        "Integrated Nodemailer (SMTP configuration) to support system emails and user verification flows.",
+      ],
+      tech: [
+        "Next.js 16",
+        "React 19",
+        "Express.js 5",
+        "Prisma ORM",
+        "Better Auth",
+        "Stripe API",
+        "PostgreSQL (Neon)",
+        "Tailwind CSS v4",
+        "TanStack Query",
+        "TanStack Form",
+        "Framer Motion",
+        "Zod",
+        "Nodemailer",
+        "Cloudinary",
       ],
     },
   },
   {
     id: 3,
-    title: "SaaSify - Subscriptions Portal",
+    title: "Medi Store",
     description:
-      "A subscription gateway engine offering tenant workspace spaces, Stripe webhooks, and analytics.",
+      "A multi-vendor online pharmacy platform offering dynamic shopping experiences, custom seller dashboards, and global administrative controls.",
     features: [
-      "Stripe payment checkout system and real-time webhook parsing.",
-      "Multi-tenant seat invitations and workspace organization isolation.",
-      "Interactive usage quota charts and analytics summaries.",
+      "Multi-Vendor Support with isolated data management for individual sellers",
+      "Seller Dashboard for inventory management, order tracking, and sales analytics",
+      "Admin Dashboard for user management (active/deactivated), dynamic categories, and global statistics",
+      "Dynamic Shop with filtering, search, and category-based navigation",
     ],
-    liveUrl: "https://saasify.example.com",
-    clientUrl: "https://github.com/FajlaRabby24/saasify-client",
-    serverUrl: "https://github.com/FajlaRabby24/saasify-server",
+    liveUrl: "https://medistore-client-omega.vercel.app",
+    clientUrl: "https://github.com/FajlaRabby24/MediStore-client",
+    serverUrl: "https://github.com/FajlaRabby24/medistore-server",
     images: [
       {
         url: "/medistore.png",
@@ -109,21 +174,26 @@ const mockProjects: Project[] = [
     ],
     details: {
       overview:
-        "SaaSify offers pre-built SaaS scaffolding boilerplate. It isolates workspaces safely at the DB level, manages stripe events instantly via custom queues, and renders real-time telemetry metrics using high-performance charts.",
+        "Medi Store is a healthcare-focused e-commerce application designed to bridge the gap between customers, sellers, and administrators. The frontend is built on Next.js 15 (App Router) with custom skeleton loaders and Framer Motion animations to deliver a native-app-like experience. The backend API is powered by Express.js and PostgreSQL (via Prisma ORM), utilizing Better Auth for secure user flows, Cloudinary for direct image handling, and Nodemailer with EJS templates for automated OTP emails.",
       points: [
-        "Workspace scopes security validation policies.",
-        "Automatic Stripe invoice generation and coupon tracking.",
-        "Advanced quota alerts and seat limits warning alerts.",
-        "High-performance chart renderings using Recharts.",
+        "Multi-vendor separation ensuring that sellers can only manage their own medicines, inventories, and incoming orders.",
+        "Smart state management syncing guest checkout actions and shopping cart status directly to user profiles upon login.",
+        "Robust security implementation including tiered rate limiting (auth/mutations), compiled TS outputs, and production-aware secure cookies.",
+        "Pixel-matched skeleton loaders, error boundaries, and dynamic automated sitemaps for optimal SEO and resilient UX.",
       ],
       tech: [
-        "React",
+        "Next.js 15 (App Router)",
+        "Express.js",
         "PostgreSQL",
-        "Next.js",
-        "Stripe API",
         "Prisma ORM",
-        "Recharts",
-        "Tailwind CSS",
+        "Better Auth",
+        "Zustand",
+        "TanStack Query",
+        "Tailwind CSS & Shadcn UI",
+        "Zod & React Hook Form",
+        "Framer Motion",
+        "Cloudinary",
+        "Nodemailer (EJS)",
       ],
     },
   },
@@ -164,19 +234,19 @@ const FeaturedProjects = () => {
         </div>
 
         {/* Projects List */}
-        <div className="space-y-16">
+        <div className="space-y-6">
           {mockProjects.map((project) => (
             <div
               key={project.id}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-[2rem] p-6 md:p-8 shadow-sm hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-[2rem] p-4 sm:p-6 shadow-sm hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300"
             >
               {/* Left Column: Swiper Image Slider */}
-              <div className="lg:col-span-6 relative w-full aspect-[16/10] bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl overflow-hidden group">
+              <div className="lg:col-span-6 relative w-full aspect-16/10 bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl overflow-hidden group">
                 <Swiper
                   modules={[Pagination, Autoplay]}
                   autoplay={{
                     delay: 3000,
-                    disableOnInteraction: false,
+                    disableOnInteraction: true,
                   }}
                   pagination={{ clickable: true }}
                   className="w-full h-full"
@@ -186,10 +256,12 @@ const FeaturedProjects = () => {
                       key={i}
                       className="relative w-full h-full flex items-center justify-center bg-zinc-100 dark:bg-zinc-900/40"
                     >
-                      <img
+                      <Image
                         src={img.url}
                         alt={`${project.title} screenshot ${i + 1}`}
-                        className="object-cover w-full h-full select-none"
+                        className="object-fill w-full h-full select-none"
+                        width={500}
+                        height={500}
                         loading="lazy"
                       />
                     </SwiperSlide>
