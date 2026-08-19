@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 
-const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -20,7 +20,7 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -36,7 +36,7 @@ const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const WhatsappIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const WhatsappIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -52,7 +52,7 @@ const WhatsappIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 const Banner = () => {
   return (
-    <section className="relative flex flex-col justify-center items-center overflow-hidden px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 pb-36">
+    <section className="relative flex flex-col justify-center items-center overflow-hidden px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 pb-34">
       {/* Embedded style for infinite scrolling marquee */}
       <style
         dangerouslySetInnerHTML={{
