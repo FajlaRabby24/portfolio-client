@@ -43,7 +43,10 @@ const mockCertificates: Certificate[] = [
 
 const Certificates = () => {
   return (
-    <section className="py-20 px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 relative border-t border-zinc-200/40 dark:border-zinc-900/60">
+    <section
+      id="certificates"
+      className="py-20 px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 relative border-t border-zinc-200/40 dark:border-zinc-900/60"
+    >
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Title */}
         <div className="space-y-4 text-left">

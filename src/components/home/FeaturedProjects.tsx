@@ -203,7 +203,9 @@ const FeaturedProjects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section className="py-20 px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 relative">
+    <section
+    id="projects"
+    className="py-20 px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 relative">
       {/* Embedded Swiper Styles to match colors */}
       <style
         dangerouslySetInnerHTML={{

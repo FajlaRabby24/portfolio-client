@@ -52,7 +52,10 @@ export const WhatsappIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 const Banner = () => {
   return (
-    <section className="relative flex flex-col justify-center items-center overflow-hidden px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 pb-34">
+    <section
+      id="home"
+      className="relative flex flex-col justify-center items-center overflow-hidden px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 pb-34"
+    >
       {/* Embedded style for infinite scrolling marquee */}
       <style
         dangerouslySetInnerHTML={{

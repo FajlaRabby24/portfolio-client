@@ -1,13 +1,18 @@
 "use client";
 
-import { Mail, MapPin, Send, MessageSquare } from "lucide-react";
+import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
+import { envVars } from "@/config/env";
+import emailjs from "@emailjs/browser";
+import { ArrowUp, Mail, MapPin, Send } from "lucide-react";
 import { motion } from "motion/react";
-import { useState } from "react";
+import Link from "next/link";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
+import { GithubIcon, LinkedinIcon, WhatsappIcon } from "./banner";
 
 export default function Contact() {
+  const form = useRef<HTMLFormElement | null>(null);
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     message: "",
   });
@@ -15,196 +20,215 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
+    const currentForm = form.current;
+    if (!currentForm) return;
+
+    if (!formData.email || !formData.message) {
       toast.error("Please fill in all fields.");
       return;
     }
 
     setIsSubmitting(true);
-    // Simulate API submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast.success("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-    }, 1200);
+    emailjs
+      .sendForm(
+        envVars.EMAILJS_SERVICE_ID,
+        envVars.EMAILJS_TEMPLATE_ID,
+        currentForm,
+        {
+          publicKey: envVars.EAMILJS_PUBLIC_KEY,
+        },
+      )
+      .then(
+        () => {
+          setIsSubmitting(false);
+          toast.success("Thanks for reaching out. I'll contact you soon!");
+          currentForm.reset();
+          setFormData({ email: "", message: "" });
+        },
+        (error) => {
+          toast.error(`FAILED... ${error.text}`);
+          setIsSubmitting(false);
+        },
+      );
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
     <section
       id="contact"
-      className="relative min-h-[calc(100vh-80px)] flex flex-col justify-center items-center bg-background text-foreground overflow-hidden py-16 px-6 md:px-12 lg:px-16 select-none transition-colors duration-300"
+      className="relative flex flex-col justify-center items-center bg-zinc-50 dark:bg-zinc-950 text-foreground overflow-hidden pt-20 px-6 md:px-12 transition-colors duration-300 border-t border-zinc-200/40 dark:border-zinc-900/60"
     >
-      {/* Background radial glow - Faint and purple to blend with the contact theme */}
-      <motion.div
-        animate={{
-          scale: [1, 1.05, 1],
-          opacity: [0.08, 0.12, 0.08],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute bottom-[20%] right-[30%] w-[320px] md:w-[650px] lg:w-[800px] h-[320px] md:h-[650px] lg:h-[800px] rounded-full bg-[#A855F7]/30 blur-[80px] md:blur-[140px] lg:blur-[180px] pointer-events-none z-0"
-      />
+      {/* Background glow behind card */}
+      <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[320px] md:w-[650px] lg:w-[800px] h-[320px] md:h-[650px] lg:h-[800px] rounded-full bg-[#A855F7]/10 blur-[80px] md:blur-[140px] lg:blur-[180px] pointer-events-none z-0" />
 
-      <div className="w-full max-w-7xl mx-auto flex-1 flex flex-col justify-center relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch w-full">
-          {/* Part 1: Left Card - Get in Touch Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="lg:col-span-5 relative rounded-[2rem] p-8 md:p-12 flex flex-col justify-between overflow-hidden hover:scale-[1.01] transition-all duration-500
-              bg-gradient-to-br from-indigo-100/70 via-purple-50/50 to-pink-100/40 border border-purple-200/50 shadow-lg shadow-purple-900/5
-              dark:bg-gradient-to-br dark:from-zinc-950/80 dark:via-purple-950/15 dark:to-zinc-900/60 dark:border-zinc-800/80 dark:shadow-2xl dark:shadow-purple-950/5"
-          >
-            {/* Header / Accent Badge */}
-            <div className="flex items-center gap-3">
-              <span className="relative flex h-2.5 w-2.5">
+      <div className="w-full max-w-7xl mx-auto flex flex-col items-center relative z-10 space-y-16">
+        {/* Centralized Glassmorphic Contact Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="w-full max-w-4xl bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-[2.5rem] p-8 md:p-12 shadow-sm relative overflow-hidden flex flex-col items-center text-center space-y-8 hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300"
+        >
+          {/* Mini background grid pattern */}
+          <InteractiveGridPattern
+            className="absolute inset-0 w-full h-full stroke-zinc-200/40 dark:stroke-zinc-800/20 mask-[radial-gradient(200px_circle_at_center,white,transparent)] z-0 pointer-events-none"
+            width={20}
+            height={20}
+            squares={[15, 15]}
+          />
+
+          <div className="relative z-10 w-full flex flex-col items-center space-y-6">
+            {/* Header Badge */}
+            <div className="flex items-center gap-3 bg-purple-500/5 dark:bg-purple-500/5 px-4 py-1.5 rounded-full border border-purple-200/50 dark:border-purple-950 shadow-sm">
+              <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#A855F7] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#A855F7]"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#A855F7]"></span>
               </span>
-              <span className="text-xs md:text-sm font-semibold tracking-wider text-purple-800 dark:text-[#c084fc] uppercase font-sans">
-                Let's Collaborate
+              <span className="text-xs font-semibold tracking-wider text-purple-800 dark:text-[#c084fc] uppercase">
+                Contact
               </span>
             </div>
 
-            {/* Headline and Description */}
-            <div className="my-auto py-8 space-y-4">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white leading-none">
-                Get in{" "}
-                <span className="font-serif italic text-[#A855F7] dark:text-[#c084fc]">
-                  Touch
-                </span>
+            {/* Title & Subtitle */}
+            <div className="space-y-3">
+              <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white max-w-lg leading-tight">
+                Have a project in mind or looking for a developer?
               </h2>
-              <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base leading-relaxed font-light">
-                Have an exciting project in mind or want to discuss a new opportunity? Feel free to reach out. I'm always open to new ideas, creative collaborations, or just a friendly chat.
-              </p>
             </div>
 
-            {/* Contact Details List */}
-            <div className="border-t border-zinc-200/60 dark:border-zinc-800/60 pt-6 space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-900/40">
-                  <Mail className="w-4 h-4 text-purple-600 dark:text-[#c084fc]" />
-                </div>
-                <div>
-                  <p className="text-xs text-zinc-400 font-light">Email me at</p>
-                  <a
-                    href="mailto:fajlarabby24@gmail.com"
-                    className="text-sm font-medium text-zinc-800 dark:text-zinc-200 hover:text-[#A855F7] dark:hover:text-[#c084fc] transition-colors"
-                  >
-                    fajlarabby24@gmail.com
-                  </a>
-                </div>
+            {/* Direct Form */}
+            <form
+              ref={form}
+              onSubmit={handleSubmit}
+              className="w-full max-w-xl space-y-4 pt-4"
+            >
+              <div className="space-y-1.5 text-left">
+                <label
+                  htmlFor="email"
+                  className="text-xs font-semibold text-zinc-500 dark:text-zinc-455 uppercase tracking-wider pl-1 select-none"
+                >
+                  Your Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  required
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  className="w-full px-5 py-3 rounded-xl border border-zinc-200 dark:border-zinc-850 bg-white/90 dark:bg-zinc-950/40 text-zinc-850 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#A855F7] focus:ring-2 focus:ring-[#A855F7]/10 transition-all duration-300 shadow-xs text-sm"
+                />
               </div>
 
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-900/40">
-                  <MapPin className="w-4 h-4 text-purple-600 dark:text-[#c084fc]" />
-                </div>
-                <div>
-                  <p className="text-xs text-zinc-400 font-light">Located in</p>
-                  <p className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                    Dhaka, Bangladesh
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Part 2: Right Card - Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25 }}
-            className="lg:col-span-7 relative rounded-[2rem] p-8 md:p-12 flex flex-col justify-between overflow-hidden hover:scale-[1.01] transition-all duration-500
-              bg-gradient-to-br from-indigo-100/70 via-purple-50/50 to-pink-100/40 border border-purple-200/50 shadow-lg shadow-purple-900/5
-              dark:bg-gradient-to-br dark:from-zinc-950/80 dark:via-purple-950/15 dark:to-zinc-900/60 dark:border-zinc-800/80 dark:shadow-2xl dark:shadow-purple-950/5"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col justify-between">
-              <div className="space-y-5">
-                <div className="flex items-center gap-2 text-zinc-800 dark:text-zinc-200">
-                  <MessageSquare className="w-5 h-5 text-purple-600 dark:text-[#c084fc]" />
-                  <h3 className="font-semibold tracking-wide">Send a Message</h3>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="name"
-                      className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider"
-                    >
-                      Your Name
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      required
-                      placeholder="John Doe"
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      className="w-full px-5 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/40 text-zinc-850 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#A855F7] focus:ring-2 focus:ring-[#A855F7]/20 transition-all duration-300"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="email"
-                      className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider"
-                    >
-                      Your Email
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      required
-                      placeholder="john@example.com"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      className="w-full px-5 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/40 text-zinc-850 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#A855F7] focus:ring-2 focus:ring-[#A855F7]/20 transition-all duration-300"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2 flex-1 flex flex-col">
-                  <label
-                    htmlFor="message"
-                    className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider"
-                  >
-                    Your Message
-                  </label>
-                  <textarea
-                    id="message"
-                    required
-                    rows={4}
-                    placeholder="Tell me about your project or enquiry..."
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    className="w-full px-5 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/40 text-zinc-850 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#A855F7] focus:ring-2 focus:ring-[#A855F7]/20 transition-all duration-300 resize-none flex-1 min-h-[120px]"
-                  />
-                </div>
+              <div className="space-y-1.5 text-left">
+                <label
+                  htmlFor="message"
+                  className="text-xs font-semibold text-zinc-500 dark:text-zinc-455 uppercase tracking-wider pl-1 select-none"
+                >
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  required
+                  rows={4}
+                  placeholder="Tell me about your project or enquiry..."
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                  className="w-full px-5 py-3 rounded-xl border border-zinc-200 dark:border-zinc-850 bg-white/90 dark:bg-zinc-950/40 text-zinc-850 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#A855F7] focus:ring-2 focus:ring-[#A855F7]/10 transition-all duration-300 resize-none min-h-[100px] shadow-xs text-sm"
+                />
               </div>
 
-              <div className="pt-4 flex justify-end">
+              <div className="pt-2 flex justify-end">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group inline-flex items-center gap-2.5 px-8 py-3.5 bg-[#A855F7] hover:bg-[#b066f8] text-white font-semibold rounded-full text-sm tracking-wide shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="group inline-flex items-center gap-2.5 px-6 py-3 bg-[#A855F7] hover:bg-[#b066f8] text-white font-semibold rounded-full text-xs tracking-wider shadow-sm transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto justify-center"
                 >
                   <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
-                  <Send className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <Send className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
               </div>
             </form>
-          </motion.div>
+
+            {/* Direct Contact Footer inside Card */}
+            <div className="w-full max-w-xl border-t border-zinc-100 dark:border-zinc-850 pt-6 flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-xs md:text-sm text-zinc-500 dark:text-zinc-400 font-medium">
+              <div className="flex items-center gap-1.5">
+                <Mail className="w-3.5 h-3.5 text-[#A855F7] dark:text-[#c084fc]" />
+                <span>
+                  Direct:{" "}
+                  <a
+                    href="mailto:fajlarabby.dev@gmail.com"
+                    className="hover:text-[#A855F7] dark:hover:text-[#c084fc] transition-colors"
+                  >
+                    fajlaraby.dev@gmail.com
+                  </a>
+                </span>
+              </div>
+              <span className="hidden sm:inline">•</span>
+              <div className="flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-[#A855F7] dark:text-[#c084fc]" />
+                <span>Dhaka, Bangladesh</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Footer Area */}
+        <div className="w-full flex flex-col items-center space-y-6 pt-8 border-t border-zinc-200/40 dark:border-zinc-900/60">
+          {/* Social Icons Row */}
+          <div className="flex items-center justify-center gap-4 select-none">
+            <Link
+              href="https://github.com/FajlaRabby24"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-900 bg-white dark:bg-zinc-950/60 p-2 text-zinc-500 dark:text-zinc-400 hover:text-[#A855F7] dark:hover:text-[#c084fc] hover:border-[#A855F7] dark:hover:border-[#c084fc] transition-all duration-300 shadow-xs hover:scale-105 flex items-center justify-center"
+              aria-label="GitHub"
+            >
+              <GithubIcon className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/fajlarabby24"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-900 bg-white dark:bg-zinc-950/60 p-2 text-zinc-500 dark:text-zinc-400 hover:text-[#A855F7] dark:hover:text-[#c084fc] hover:border-[#A855F7] dark:hover:border-[#c084fc] transition-all duration-300 shadow-xs hover:scale-105 flex items-center justify-center"
+              aria-label="LinkedIn"
+            >
+              <LinkedinIcon className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://wa.me/01307495864"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-900 bg-white dark:bg-zinc-950/60 p-2 text-zinc-500 dark:text-zinc-400 hover:text-[#A855F7] dark:hover:text-[#c084fc] hover:border-[#A855F7] dark:hover:border-[#c084fc] transition-all duration-300 shadow-xs hover:scale-105 flex items-center justify-center"
+              aria-label="WhatsApp"
+            >
+              <WhatsappIcon className="w-5 h-5" />
+            </Link>
+          </div>
+
+          {/* Back to Top Arrow Button */}
+          <button
+            onClick={scrollToTop}
+            className="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-900 bg-white dark:bg-zinc-950/60 flex items-center justify-center text-zinc-550 dark:text-zinc-400 hover:text-[#A855F7] dark:hover:text-[#c084fc] hover:border-[#A855F7] dark:hover:border-[#c084fc] hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-all duration-300 shadow-xs hover:scale-105 cursor-pointer"
+            aria-label="Back to Top"
+          >
+            <ArrowUp className="w-4 h-4" />
+          </button>
+
+          {/* Copyright Tag */}
+          <p className="text-xs text-zinc-400 dark:text-zinc-600 select-none">
+            © {new Date().getFullYear()} Fajla Rabby. All rights reserved.
+          </p>
         </div>
       </div>
     </section>

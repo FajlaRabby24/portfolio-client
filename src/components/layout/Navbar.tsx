@@ -41,11 +41,11 @@ const Navbar = ({
     title: "Fajla Rabby",
   },
   menu = [
-    { title: "Home", url: "/" },
-    {
-      title: "About me",
-      url: "#about",
-    },
+    { title: "Home", url: "#home" },
+    { title: "About me", url: "#about-me" },
+    { title: "Skills", url: "#skills" },
+    { title: "Projects", url: "#projects" },
+    { title: "Certificates", url: "#certificates" },
     {
       title: "Contact",
       url: "#contact",
