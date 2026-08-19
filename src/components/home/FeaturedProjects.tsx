@@ -205,7 +205,7 @@ const FeaturedProjects = () => {
   return (
     <section
     id="projects"
-    className="py-20 px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 relative">
+    className="py-20 scroll-mt-6 px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 relative">
       {/* Embedded Swiper Styles to match colors */}
       <style
         dangerouslySetInnerHTML={{

@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -8,7 +9,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
@@ -18,13 +18,9 @@ import { ThemeToggle } from "./ThemeToggle";
 interface MenuItem {
   title: string;
   url: string;
-  description?: string;
-  icon?: React.ReactNode;
-  items?: MenuItem[];
 }
 
 interface Navbar1Props {
-  className?: string;
   logo?: {
     url: string;
     alt: string;
@@ -32,6 +28,7 @@ interface Navbar1Props {
     className?: string;
   };
   menu?: MenuItem[];
+  className?: string;
 }
 
 const Navbar = ({
@@ -42,10 +39,10 @@ const Navbar = ({
   },
   menu = [
     { title: "Home", url: "#home" },
-    { title: "About me", url: "#about-me" },
-    { title: "Skills", url: "#skills" },
     { title: "Projects", url: "#projects" },
+    { title: "Skills", url: "#skills" },
     { title: "Certificates", url: "#certificates" },
+    { title: "About me", url: "#about-me" },
     {
       title: "Contact",
       url: "#contact",
@@ -54,6 +51,17 @@ const Navbar = ({
   className,
 }: Navbar1Props) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, url: string) => {
+    if (url.startsWith("#")) {
+      e.preventDefault();
+      const element = document.querySelector(url);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <header
       className={cn(
@@ -78,6 +86,7 @@ const Navbar = ({
             <Link
               key={item.title}
               href={item.url}
+              onClick={(e) => handleScroll(e, item.url)}
               className="text-md font-semibold text-zinc-650 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors py-2"
             >
               {item.title}
@@ -93,6 +102,7 @@ const Navbar = ({
           {/* Contact Pill Button - Desktop */}
           <Link
             href="#contact"
+            onClick={(e) => handleScroll(e, "#contact")}
             className="hidden md:inline-flex items-center justify-center px-6 py-2 rounded-full text-sm font-semibold bg-zinc-950 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-100 transition-colors shadow-sm"
           >
             Contact
@@ -126,7 +136,10 @@ const Navbar = ({
                   >
                     <Link
                       href={item.url}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        handleScroll(e, item.url);
+                        setIsMobileMenuOpen(false);
+                      }}
                       className="text-3xl font-bold hover:text-zinc-600 dark:hover:text-zinc-300 tracking-wide transition-colors duration-300 flex items-baseline group"
                     >
                       <span className="text-zinc-400 dark:text-zinc-600 text-xs font-sans not-italic mr-4">
@@ -146,7 +159,10 @@ const Navbar = ({
                 >
                   <Link
                     href="#contact"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      handleScroll(e, "#contact");
+                      setIsMobileMenuOpen(false);
+                    }}
                     className="inline-flex w-full items-center justify-center px-6 py-3 rounded-full text-base font-semibold bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 shadow-sm"
                   >
                     Contact

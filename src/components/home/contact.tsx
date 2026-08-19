@@ -62,7 +62,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative flex flex-col justify-center items-center bg-zinc-50 dark:bg-zinc-950 text-foreground overflow-hidden pt-20 px-6 md:px-12 transition-colors duration-300 border-t border-zinc-200/40 dark:border-zinc-900/60"
+      className="relative scroll-mt-6 flex flex-col justify-center items-center bg-zinc-50 dark:bg-zinc-950 text-foreground overflow-hidden pt-20 px-6 md:px-12 transition-colors duration-300 border-t border-zinc-200/40 dark:border-zinc-900/60"
     >
       {/* Background glow behind card */}
       <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[320px] md:w-[650px] lg:w-[800px] h-[320px] md:h-[650px] lg:h-[800px] rounded-full bg-[#A855F7]/10 blur-[80px] md:blur-[140px] lg:blur-[180px] pointer-events-none z-0" />
