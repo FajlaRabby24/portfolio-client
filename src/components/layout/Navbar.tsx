@@ -62,7 +62,6 @@ const Navbar = ({
       )}
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
-        
         {/* Logo - Modern Clean Sans-Serif */}
         <Link
           href={logo.url}
@@ -79,7 +78,7 @@ const Navbar = ({
             <Link
               key={item.title}
               href={item.url}
-              className="text-sm font-semibold text-zinc-650 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors py-2"
+              className="text-md font-semibold text-zinc-650 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors py-2"
             >
               {item.title}
             </Link>
@@ -88,7 +87,6 @@ const Navbar = ({
 
         {/* Right Action Elements */}
         <div className="flex items-center gap-4 z-50">
-          
           {/* Theme Toggle */}
           <ThemeToggle />
 
@@ -138,7 +136,7 @@ const Navbar = ({
                     </Link>
                   </motion.div>
                 ))}
-                
+
                 {/* Contact Pill Action inside Mobile Drawer */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
