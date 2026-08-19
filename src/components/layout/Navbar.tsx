@@ -1,6 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -9,6 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
@@ -52,7 +52,10 @@ const Navbar = ({
 }: Navbar1Props) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, url: string) => {
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    url: string,
+  ) => {
     if (url.startsWith("#")) {
       e.preventDefault();
       const element = document.querySelector(url);
@@ -150,7 +153,7 @@ const Navbar = ({
                   </motion.div>
                 ))}
 
-                {/* Contact Pill Action inside Mobile Drawer */}
+                {/* Resume Action inside Mobile Drawer */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -158,14 +161,13 @@ const Navbar = ({
                   className="pt-4"
                 >
                   <Link
-                    href="#contact"
-                    onClick={(e) => {
-                      handleScroll(e, "#contact");
-                      setIsMobileMenuOpen(false);
-                    }}
+                    href="https://drive.google.com/file/d/1sOzw7brSAQ8gWbYcTpiQ7w5W4hUyblMv/view?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
                     className="inline-flex w-full items-center justify-center px-6 py-3 rounded-full text-base font-semibold bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 shadow-sm"
                   >
-                    Contact
+                    Resume
                   </Link>
                 </motion.div>
               </div>
