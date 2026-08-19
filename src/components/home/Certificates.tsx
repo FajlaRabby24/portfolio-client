@@ -67,7 +67,7 @@ const Certificates = () => {
           {mockCertificates.map((cert) => (
             <div
               key={cert.id}
-              className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-2xl p-6 hover:border-zinc-350 dark:hover:border-zinc-800 transition-all duration-300 shadow-sm"
+              className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-2xl p-6 hover:border-zinc-350 dark:hover:border-zinc-800 transition-all duration-300 "
             >
               <div className="flex items-start gap-4">
                 {/* Visual Icon Badge */}

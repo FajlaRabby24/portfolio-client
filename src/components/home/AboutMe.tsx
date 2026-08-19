@@ -25,10 +25,10 @@ const AboutMe = () => {
         </div>
 
         {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           
           {/* Box 1: The Journey (col-span-2) */}
-          <div className="relative overflow-hidden bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-[2rem] p-8 shadow-sm md:col-span-2 min-h-[220px] flex flex-col justify-between group hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300">
+          <div className="relative overflow-hidden bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-3xl p-8 shadow-sm md:col-span-2 min-h-[220px] flex flex-col justify-between group hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300">
             <InteractiveGridPattern
               className="absolute inset-0 w-full h-full stroke-zinc-200/40 dark:stroke-zinc-800/20 [mask-image:radial-gradient(150px_circle_at_center,white,transparent)] z-0 pointer-events-none"
               width={20}
@@ -49,7 +49,7 @@ const AboutMe = () => {
           </div>
 
           {/* Box 2: Status & Availability (col-span-1) */}
-          <div className="relative overflow-hidden bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-[2rem] p-8 shadow-sm md:col-span-1 min-h-[220px] flex flex-col justify-between group hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300">
+          <div className="relative overflow-hidden bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-3xl p-8 shadow-sm md:col-span-1 min-h-[220px] flex flex-col justify-between group hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300">
             <InteractiveGridPattern
               className="absolute inset-0 w-full h-full stroke-zinc-200/40 dark:stroke-zinc-800/20 [mask-image:radial-gradient(100px_circle_at_center,white,transparent)] z-0 pointer-events-none"
               width={20}
@@ -86,7 +86,7 @@ const AboutMe = () => {
           </div>
 
           {/* Box 3: Core Values (col-span-3) */}
-          <div className="relative overflow-hidden bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-[2rem] p-8 shadow-sm md:col-span-3 min-h-[240px] flex flex-col justify-between group hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300">
+          <div className="relative overflow-hidden bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-3xl p-8 shadow-sm md:col-span-3 min-h-[240px] flex flex-col justify-between group hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300">
             <InteractiveGridPattern
               className="absolute inset-0 w-full h-full stroke-zinc-200/40 dark:stroke-zinc-800/20 [mask-image:radial-gradient(200px_circle_at_center,white,transparent)] z-0 pointer-events-none"
               width={20}

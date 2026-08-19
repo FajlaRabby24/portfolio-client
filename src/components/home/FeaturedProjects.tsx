@@ -240,7 +240,7 @@ const FeaturedProjects = () => {
           {mockProjects.map((project) => (
             <div
               key={project.id}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-[2rem] p-4 sm:p-6 shadow-sm hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-4xl p-4 sm:p-6 shadow-sm hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300"
             >
               {/* Left Column: Swiper Image Slider */}
               <div className="lg:col-span-6 relative w-full aspect-16/10 bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl overflow-hidden group">

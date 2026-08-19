@@ -57,7 +57,7 @@ const TechnicalSkills = () => {
   return (
     <section
     id="skills"
-    className="py-20 scroll-mt-6   px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 relative border-t border-zinc-200/40 dark:border-zinc-900/60">
+    className="py-20 scroll-mt-6  px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 relative border-t border-zinc-200/40 dark:border-zinc-900/60">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Title */}
         <div className="space-y-4 text-left">
@@ -74,13 +74,13 @@ const TechnicalSkills = () => {
         </div>
 
         {/* Skill Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {skillCategories.map((category) => {
             const Icon = category.icon;
             return (
               <div
                 key={category.id}
-                className="relative overflow-hidden bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-[2rem] p-6 shadow-sm min-h-[260px] flex flex-col justify-between group hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300"
+                className="relative overflow-hidden bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-4xl p-6 shadow-sm min-h-[260px] flex flex-col justify-between group hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300"
               >
                 {/* Mini faded grid pattern inside the card background */}
                 <InteractiveGridPattern

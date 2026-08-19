@@ -14,6 +14,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
+import Image from "next/image";
 
 interface MenuItem {
   title: string;
@@ -25,6 +26,7 @@ interface Navbar1Props {
     url: string;
     alt: string;
     title: string;
+    src?: string;
     className?: string;
   };
   menu?: MenuItem[];
@@ -35,13 +37,12 @@ const Navbar = ({
   logo = {
     url: "/",
     alt: "logo",
-    title: "Fajla Rabby",
+    title: "FR",
   },
   menu = [
     { title: "Home", url: "#home" },
     { title: "Projects", url: "#projects" },
     { title: "Skills", url: "#skills" },
-    { title: "Certificates", url: "#certificates" },
     { title: "About me", url: "#about-me" },
     {
       title: "Contact",
@@ -73,18 +74,18 @@ const Navbar = ({
       )}
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
-        {/* Logo - Modern Clean Sans-Serif */}
+        {/* Logo - Modern Clean Icon and Title */}
         <Link
           href={logo.url}
-          className="flex items-center gap-2 group relative z-50"
+          className="flex items-center  relative z-50"
         >
-          <span className="font-bold text-xl tracking-tight text-zinc-900 dark:text-white transition-colors duration-300">
+          <span className="font-bold text-4xl italic tracking-tight text-zinc-900 dark:text-white transition-colors duration-300">
             {logo.title}
           </span>
         </Link>
 
         {/* Desktop Centered Menu Links */}
-        <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+        <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
           {menu.map((item) => (
             <Link
               key={item.title}
@@ -129,7 +130,7 @@ const Navbar = ({
               </SheetHeader>
 
               {/* Stacked Menu Navigation inside Drawer */}
-              <div className="flex flex-col gap-6 my-auto text-left">
+              <div className="flex flex-col gap-4 my-auto text-left">
                 {menu.map((item, idx) => (
                   <motion.div
                     key={item.title}
@@ -143,7 +144,7 @@ const Navbar = ({
                         handleScroll(e, item.url);
                         setIsMobileMenuOpen(false);
                       }}
-                      className="text-3xl font-bold hover:text-zinc-600 dark:hover:text-zinc-300 tracking-wide transition-colors duration-300 flex items-baseline group"
+                      className="text-2xl font-bold hover:text-zinc-600 dark:hover:text-zinc-300 tracking-wide transition-colors duration-300 flex items-baseline group"
                     >
                       <span className="text-zinc-400 dark:text-zinc-600 text-xs font-sans not-italic mr-4">
                         0{idx + 1}

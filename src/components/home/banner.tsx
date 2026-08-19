@@ -1,6 +1,7 @@
 "use client";
 
 import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
+import { Marquee } from "@/components/ui/marquee";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -66,27 +67,20 @@ const DownloadIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const MarqueeText = [
+  "Full Stack Developer",
+  "Next.js & MERN Engineer",
+  "AI SaaS Builder",
+  "Backend Architect",
+  "Interactive UI Developer",
+];
+
 const Banner = () => {
   return (
     <section
       id="home"
-      className="relative flex flex-col justify-center items-center overflow-hidden scroll-mt-20 px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 pb-34"
+      className="relative flex flex-col justify-center items-center overflow-hidden scroll-mt-20 px-6 bg-zinc-50 dark:bg-zinc-950 text-foreground transition-colors duration-300 pb-40 sm:pb-34"
     >
-      {/* Embedded style for infinite scrolling marquee */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 25s linear infinite;
-        }
-      `,
-        }}
-      />
-
       {/* Interactive Grid Pattern Background */}
       <InteractiveGridPattern
         className="absolute inset-0 w-full stroke-zinc-200/60 dark:stroke-zinc-800/40 [mask-image:radial-gradient(80%_80%_at_center,white,transparent)] z-0"
@@ -124,9 +118,9 @@ const Banner = () => {
       </div>
 
       {/* Name, Social Icons & Dialog Pills Section */}
-      <div className="relative z-20 text-center flex flex-col items-center mt-[-30px] sm:mt-[-50px] md:mt-[-70px] lg:mt-[-150px] w-full max-w-4xl px-4">
+      <div className="relative z-20 text-center flex flex-col items-center mt-4 sm:-mt-16 md:-mt-24 lg:-mt-[150px] w-full max-w-4xl px-4">
         {/* Social Icons Strip (Replaced Tech Stack) */}
-        <div className="flex items-center justify-center gap-4 py-2 select-none z-30">
+        <div className="flex items-center justify-center gap-2.5 sm:gap-4 py-2 select-none z-30">
           <Link
             href="https://github.com/FajlaRabby24"
             target="_blank"
@@ -158,7 +152,7 @@ const Banner = () => {
             href="https://drive.google.com/file/d/1sOzw7brSAQ8gWbYcTpiQ7w5W4hUyblMv/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
-            className="h-10 px-5 rounded-xl border border-zinc-200 bg-white/90 dark:border-zinc-800 dark:bg-zinc-900/90 text-xs font-semibold text-zinc-500 dark:text-zinc-400 hover:text-[#A855F7] dark:hover:text-[#c084fc] hover:border-[#A855F7] dark:hover:border-[#c084fc] transition-all duration-300 shadow-sm hover:scale-105 flex items-center justify-center gap-1.5 cursor-pointer"
+            className="h-10 px-4 sm:px-5 rounded-xl border border-zinc-200 bg-white/90 dark:border-zinc-800 dark:bg-zinc-900/90 text-xs font-semibold text-zinc-500 dark:text-zinc-400 hover:text-[#A855F7] dark:hover:text-[#c084fc] hover:border-[#A855F7] dark:hover:border-[#c084fc] transition-all duration-300 shadow-sm hover:scale-105 flex items-center justify-center gap-1 sm:gap-1.5 cursor-pointer"
             aria-label="Resume"
           >
             <span>Resume</span>
@@ -169,14 +163,14 @@ const Banner = () => {
         {/* Speech Bubbles and Headline name container */}
         <div className="relative inline-flex items-center justify-center w-fit">
           {/* Speech bubble left */}
-          <div className="absolute -top-10 left-0 md:left-[-160px] lg:left-[-200px] md:top-1/2 md:-translate-y-1/2 -rotate-6 z-30 whitespace-nowrap">
+          <div className="absolute hidden md:block md:left-[-160px] lg:left-[-200px] md:top-1/2 md:-translate-y-1/2 -rotate-6 z-30 whitespace-nowrap">
             <div className="px-4 py-1.5 rounded-full border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-900 text-[10px] md:text-xs font-semibold text-zinc-500 dark:text-zinc-400 shadow-sm">
               Hello, my name is
             </div>
           </div>
 
           {/* Speech bubble right */}
-          <div className="absolute -top-10 right-0 md:right-[-160px] lg:right-[-200px] md:top-1/2 md:-translate-y-1/2 rotate-6 z-30 whitespace-nowrap">
+          <div className="absolute hidden md:block md:right-[-160px] lg:right-[-200px] md:top-1/2 md:-translate-y-1/2 rotate-6 z-30 whitespace-nowrap">
             <Link
               href="#contact"
               className="px-4 py-1.5 rounded-full border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-900 text-[10px] md:text-xs font-semibold text-[#A855F7] dark:text-[#c084fc] shadow-sm hover:scale-105 transition-transform duration-300 block"
@@ -193,34 +187,23 @@ const Banner = () => {
       </div>
 
       {/* Infinite Scrolling Marquee */}
-      <div className="absolute bottom-20 left-0 right-0 w-full overflow-hidden border-y border-zinc-200/50 dark:border-zinc-900/80 bg-zinc-100/30 dark:bg-zinc-950/20 py-4 select-none pointer-events-none z-10">
-        <div className="flex w-[200%] animate-marquee">
-          <div className="flex justify-around w-1/2 text-xs md:text-sm font-semibold tracking-[0.2em] text-zinc-400/80 dark:text-zinc-650/80 uppercase">
-            <span>Full Stack Developer</span>
-            <span>•</span>
-            <span>Next.js & MERN Engineer</span>
-            <span>•</span>
-            <span>AI SaaS Builder</span>
-            <span>•</span>
-            <span>Backend Architect</span>
-            <span>•</span>
-            <span>Interactive UI Developer</span>
-            <span>•</span>
+      <Marquee
+        className="absolute bottom-20 left-0 right-0 w-full overflow-hidden border-y border-zinc-200/50 dark:border-zinc-900/80 bg-zinc-100/30 dark:bg-zinc-950/20 py-4 select-none pointer-events-none z-10"
+        pauseOnHover={false}
+      >
+        {MarqueeText.map((text, idx) => (
+          <div key={idx}>
+            <span
+              className="text-xs md:text-sm font-semibold tracking-[0.2em] text-zinc-400/80 dark:text-zinc-650/80 uppercase mx-4"
+            >
+              {text}
+            </span>
+            <span className="text-xs md:text-sm font-semibold tracking-[0.2em] text-zinc-400/80 dark:text-zinc-650/80 uppercase mx-4">
+              •
+            </span>
           </div>
-          <div className="flex justify-around w-1/2 text-xs md:text-sm font-semibold tracking-[0.2em] text-zinc-400/80 dark:text-zinc-650/80 uppercase">
-            <span>Full Stack Developer</span>
-            <span>•</span>
-            <span>Next.js & MERN Engineer</span>
-            <span>•</span>
-            <span>AI SaaS Builder</span>
-            <span>•</span>
-            <span>Backend Architect</span>
-            <span>•</span>
-            <span>Interactive UI Developer</span>
-            <span>•</span>
-          </div>
-        </div>
-      </div>
+        ))}
+      </Marquee>
 
       {/* Animated Scroll Down mouse indicator */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 hidden md:block">

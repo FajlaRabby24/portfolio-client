@@ -73,7 +73,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full max-w-4xl bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-[2.5rem] p-8 md:p-12 shadow-sm relative overflow-hidden flex flex-col items-center text-center space-y-8 hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300"
+          className="w-full max-w-4xl bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-900/80 rounded-4xl p-8 md:p-12 shadow-sm relative overflow-hidden flex flex-col items-center text-center space-y-8 hover:border-zinc-350 dark:hover:border-zinc-800 transition-colors duration-300"
         >
           {/* Mini background grid pattern */}
           <InteractiveGridPattern

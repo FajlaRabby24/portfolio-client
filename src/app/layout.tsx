@@ -21,6 +21,9 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Fajla Rabby",
   description: "Portfolio of Fajla Rabby",
+  icons: {
+    icon: "/title.png",
+  },
 };
 export default function RootLayout({
   children,
