@@ -162,7 +162,7 @@ const Navbar = ({
                   className="pt-4"
                 >
                   <Link
-                    href="https://drive.google.com/file/d/1sOzw7brSAQ8gWbYcTpiQ7w5W4hUyblMv/view?usp=drive_link"
+                    href="https://drive.google.com/file/d/15X_cacvEu1qVaECwB3qas7olr71i-jzW/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}
