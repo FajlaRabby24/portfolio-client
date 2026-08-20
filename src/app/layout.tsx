@@ -35,7 +35,7 @@ export default function RootLayout({
       <body className={`${roboto.className} ${roboto.variable} ${cormorant.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
