@@ -149,7 +149,7 @@ const Banner = () => {
             <WhatsappIcon className="w-5 h-5" />
           </Link>
           <Link
-            href="https://drive.google.com/file/d/1sOzw7brSAQ8gWbYcTpiQ7w5W4hUyblMv/view?usp=drive_link"
+            href="https://drive.google.com/file/d/15X_cacvEu1qVaECwB3qas7olr71i-jzW/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="h-10 px-4 sm:px-5 rounded-xl border border-zinc-200 bg-white/90 dark:border-zinc-800 dark:bg-zinc-900/90 text-xs font-semibold text-zinc-500 dark:text-zinc-400 hover:text-[#A855F7] dark:hover:text-[#c084fc] hover:border-[#A855F7] dark:hover:border-[#c084fc] transition-all duration-300 shadow-sm hover:scale-105 flex items-center justify-center gap-1 sm:gap-1.5 cursor-pointer"
